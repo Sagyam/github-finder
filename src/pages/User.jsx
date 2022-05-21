@@ -1,17 +1,18 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useContext } from 'react'
 import { FaCode, FaStoreAlt, FaUser, FaUserFriends } from 'react-icons/fa'
 import { useParams, Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
 import GithubContext from '../context/github/GithubContext'
+import RepoList from '../components/repos/ReposList'
 
 function User() {
-  const { getUser, user, loading } = useContext(GithubContext)
+  const { getUser, getRepos, user, loading, repos } = useContext(GithubContext)
 
   const params = useParams()
 
   useEffect(() => {
     getUser(params.login)
+    getRepos(params.login)
   }, [])
 
   const {
@@ -156,6 +157,7 @@ function User() {
           </div>
         </div>
       </div>
+      <RepoList repos={repos} />
     </>
   )
 }
