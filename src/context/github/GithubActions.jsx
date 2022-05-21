@@ -10,9 +10,11 @@ const githubAxios = axios.create({
   },
 })
 
-export const searchUsers = async (text) => {
+export const searchUsers = async (text, sort) => {
   const params = new URLSearchParams({
     q: text,
+    sort: sort || 'followers',
+    per_page: 25,
   })
 
   const response = await githubAxios.get(`/search/users?${params}`)

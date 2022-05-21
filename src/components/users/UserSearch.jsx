@@ -5,6 +5,7 @@ import { searchUsers } from '../../context/github/GithubActions'
 
 function UserSearch() {
   const [text, setText] = useState('')
+  const [sort, setSort] = useState('followers')
 
   const { users, dispatch } = useContext(GithubContext)
   const { setAlert } = useContext(AlertContext)
@@ -12,15 +13,20 @@ function UserSearch() {
   const handleChange = (e) => {
     setText(e.target.value)
   }
+
+  const handleSortChange = (e) => {
+    setSort(e.target.value)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (text === '') {
       setAlert('Please enter something', 'error')
     } else {
       dispatch({ type: 'SET_LOADING' })
-      const users = await searchUsers(text)
+
+      const users = await searchUsers(text, sort)
       dispatch({ type: 'SET_USERS', payload: users })
-      setText('')
     }
   }
 
@@ -57,6 +63,18 @@ function UserSearch() {
             Clear
           </button>
         </div>
+      )}
+
+      {users.length > 0 && (
+        <select
+          className='select select-bordered w-full max-w-xs select-lg m-5'
+          onChange={handleSortChange}
+        >
+          <option disabled>Sort By</option>
+          <option value='followers'>Followers</option>
+          <option value='repositories'>Repositories</option>
+          <option value='joined'>Joined</option>
+        </select>
       )}
     </div>
   )
