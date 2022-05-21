@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useContext } from 'react'
-import { FaCodePen } from 'react-icons/fa'
+import { FaCode, FaStoreAlt, FaUser, FaUserFriends } from 'react-icons/fa'
 import { useParams, Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
 import GithubContext from '../context/github/GithubContext'
@@ -66,7 +66,7 @@ function User() {
                   <div className='mx-1 badge badge-info'>Hireable</div>
                 )}
               </h1>
-              <p className='text-sm'>{bio}</p>
+              <p className='text-sm mt-4'>{bio}</p>
 
               <div className='mt-4 card-actions'>
                 <a
@@ -80,6 +80,79 @@ function User() {
                 </a>
               </div>
             </div>
+
+            <div className='w-full rounded-lg shadow-md bg-base-100 stats'>
+              {location && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Location </div>
+                  <div className='text-lg stat-value'>{location}</div>
+                </div>
+              )}
+
+              {blog && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Website </div>
+                  <div className='text-lg stat-value'>
+                    <a
+                      href={`https://${blog}`}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      {blog}
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {twitter_username && (
+                <div className='stat'>
+                  <div className='stat-title text-md'>Twitter </div>
+                  <div className='text-lg stat-value'>
+                    <a
+                      href={`https://twitter.com/${twitter_username}`}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      {twitter_username}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className='w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats'>
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaUser className='text-3xl md:text-5xl' />
+            </div>
+            <div className='stat-title pr-5'>Followers</div>
+            <div className='stat-value pr-5 text-3xl'>{followers}</div>
+          </div>
+
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaUserFriends className='text-3xl md:text-5xl' />
+            </div>
+            <div className='stat-title pr-5'>Following</div>
+            <div className='stat-value pr-5 text-3xl'>{following}</div>
+          </div>
+
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaCode className='text-3xl md:text-5xl' />
+            </div>
+            <div className='stat-title pr-5'>Public Repos</div>
+            <div className='stat-value pr-5 text-3xl'>{public_repos}</div>
+          </div>
+
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaStoreAlt className='text-3xl md:text-5xl' />
+            </div>
+            <div className='stat-title pr-5'>Publis Gist</div>
+            <div className='stat-value pr-5 text-3xl'>{public_gists}</div>
           </div>
         </div>
       </div>
