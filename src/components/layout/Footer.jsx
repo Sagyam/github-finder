@@ -3,8 +3,8 @@ import React from 'react'
 function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className='footer footer-center p-10 bg-neutral text-neutral-content relative bottom-0'>
-      <div className=''>
+    <footer className='footer footer-center p-10 bg-neutral text-neutral-content sticky top-[100vh]'>
+      <div>
         <svg
           width='50'
           height='50'
