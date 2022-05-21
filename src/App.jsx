@@ -1,16 +1,28 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import Footer from './components/layout/Footer'
+import Navbar from './components/layout/Navbar'
+import Home from './pages/Home'
+import About from './pages/About'
+import NotFound from './pages/NotFound'
 
 function App() {
     return (
-        <>
-            <h1>Hello</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio,
-                magnam. Sapiente aspernatur cum, inventore nihil nam a? Tempora
-                molestiae voluptatibus esse, error amet possimus ea distinctio
-                pariatur delectus, sit aliquid!
-            </p>
-        </>
+        <Router>
+            <div className="flex flex-col justify betweem h-screen">
+                <Navbar />
+                <main className="container mx-auto px-3 pb-12">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/notfound" element={<NotFound />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </Router>
     )
 }
 
