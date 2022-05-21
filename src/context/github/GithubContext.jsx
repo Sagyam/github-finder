@@ -52,11 +52,14 @@ export const GithubProvider = ({ children }) => {
   const getRepos = async (login) => {
     setLoading()
 
-    const res = await fetch(`${GITHUB_API_URL}/users/${login}/repos`, {
-      headers: {
-        Authorization: `token ${GITHUB_API_TOKEN}`,
-      },
-    })
+    const res = await fetch(
+      `${GITHUB_API_URL}/users/${login}/repos?sort=pushed`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_API_TOKEN}`,
+        },
+      }
+    )
     if (res.status === 404) {
       window.location.href = '/notfound'
     } else {
