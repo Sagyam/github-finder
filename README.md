@@ -2,7 +2,7 @@
 
 <a href="https://wakatime.com/badge/user/4ce09006-1b8c-491f-ace1-a70b32d5fc1c/project/8d06c09b-e47e-43da-a072-5cc160c999fe"><img src="https://wakatime.com/badge/user/4ce09006-1b8c-491f-ace1-a70b32d5fc1c/project/8d06c09b-e47e-43da-a072-5cc160c999fe.svg?style=for-the-badge" alt="wakatime"></a>
 
-<p align="center"><img src="https://socialify.git.ci/Sagyam/github-finder/image?font=Source%20Code%20Pro&amp;language=1&amp;name=1&amp;owner=1&amp;theme=Dark" alt="project-image"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Sagyam/github-finder/099ea71f8420199bbb61b3e95b1952f2d2eabe6b/image.svg"></p>
 
 <p id="description">React app for searching users and repositories in GitHub.</p>
 
