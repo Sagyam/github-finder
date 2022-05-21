@@ -164,7 +164,7 @@ function User() {
           </div>
         </div>
       </div>
-      <RepoList repos={repos} />
+      <RepoList repos={repos} login={params.login} />
     </>
   )
 }

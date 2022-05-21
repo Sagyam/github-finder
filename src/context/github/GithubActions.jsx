@@ -21,6 +21,16 @@ export const searchUsers = async (text, sort) => {
   return response.data.items
 }
 
+export const getRepos = async (login, sort, type) => {
+  const params = new URLSearchParams({
+    sort: sort || 'full_name',
+    type: type || 'owner',
+    per_page: 25,
+  })
+  const repos = await githubAxios.get(`/users/${login}/repos?${params}`)
+  return repos.data
+}
+
 export const getUserAndRepos = async (login) => {
   const [user, repos] = await Promise.all([
     githubAxios.get(`/users/${login}`),
