@@ -4,16 +4,23 @@ import { useParams, Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
 import GithubContext from '../context/github/GithubContext'
 import RepoList from '../components/repos/ReposList'
+import { getUserAndRepos } from '../context/github/GithubActions'
 
 function User() {
-  const { getUser, getRepos, user, loading, repos } = useContext(GithubContext)
+  const { user, loading, repos, dispatch } = useContext(GithubContext)
 
   const params = useParams()
 
   useEffect(() => {
-    getUser(params.login)
-    getRepos(params.login)
-  }, [])
+    dispatch({ type: 'SET_LOADING' })
+
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login)
+      dispatch({ type: 'GET_USER_AND_DATA', payload: userData })
+    }
+
+    getUserData()
+  }, [dispatch, params.login])
 
   const {
     name,
@@ -95,11 +102,11 @@ function User() {
                   <div className='stat-title text-md'>Website </div>
                   <div className='text-lg stat-value'>
                     <a
-                      href={`https://${blog}`}
+                      href={`${blog}`}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
-                      {blog}
+                      {blog.replace(/(^\w+:|^)\/\//, '').replace('www.', '')}
                     </a>
                   </div>
                 </div>
